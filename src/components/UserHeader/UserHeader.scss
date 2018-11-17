@@ -1,0 +1,23 @@
+.centered.row.userHeader {
+  height: 320px;
+  background: url(https://pmcvariety.files.wordpress.com/2018/11/lady-gaga-2.jpg) no-repeat center;
+  background-size: 100%;
+}
+
+.userHeader .ui.center.aligned.header, .ui.centered.header {
+  margin-top: 10px;
+}
+
+.ui.grid>.row>.column>img, .ui.grid>.row>img .userHeader {
+  margin-top: 10px;
+}
+
+.userHeader .ui.header .content{
+  color:white;
+  text-shadow: 3px 3px 15px black;
+}
+
+.userHeader h2.ui.header .sub.header {
+  color: white;
+  text-shadow: 3px 3px 15px black;
+}
