@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Card, Tab, Header, Grid, Button } from 'semantic-ui-react';
+import { Tab, Grid } from 'semantic-ui-react';
 import MyCollectionContainer from '../MyCollectionsContainer/MyCollectionsContainer'
 import './TabsMenu.scss'
 
 class TabsMenu extends Component {
-  
+
   render() {
     const panes = [
       { menuItem: 'Minhas Colecoes', render: () => <Tab.Pane className='myCollections' attached={true}><MyCollectionContainer /></Tab.Pane> },

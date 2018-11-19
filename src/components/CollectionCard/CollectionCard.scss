@@ -3,3 +3,14 @@
   background: url(https://vignette.wikia.nocookie.net/ffooff/images/c/cd/Sissy_That_Walk.jpg/revision/latest?cb=20170828202646) no-repeat center;
   background-size: 100%;
 }
+
+.collectionCard p {
+  padding-right: 10px;
+  display: inline;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.collectionCard p:hover {
+  color: #e03997 !important;
+}
