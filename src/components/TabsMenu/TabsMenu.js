@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Tab, Grid } from 'semantic-ui-react';
 import MyCollectionContainer from '../MyCollectionsContainer/MyCollectionsContainer'
+import FollowingUsersContainer from '../FollowingUsersContainer/FollowingUsersContainer'
 import './TabsMenu.scss'
 
 class TabsMenu extends Component {
@@ -8,7 +9,7 @@ class TabsMenu extends Component {
   render() {
     const panes = [
       { menuItem: 'Minhas Colecoes', render: () => <Tab.Pane className='myCollections' attached={true}><MyCollectionContainer /></Tab.Pane> },
-      { menuItem: 'Seguindo', render: () => <Tab.Pane attached={true}>Tab 2 Content</Tab.Pane> },
+      { menuItem: 'Seguindo Usuários', render: () => <Tab.Pane className='followingUsers' attached={true}><FollowingUsersContainer /></Tab.Pane> },
       { menuItem: 'Tab 3', render: () => <Tab.Pane attached={true}>Tab 3 Content</Tab.Pane> },
     ];
 
