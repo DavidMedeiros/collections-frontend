@@ -41,7 +41,7 @@ class FollowingUsersContainer extends Component {
         "__v": 0
       }
     ];
-
+    console.log(_following_users);
     return (
       <Grid>
         <Grid.Column width={12}>
