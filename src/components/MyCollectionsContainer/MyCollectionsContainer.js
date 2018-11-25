@@ -4,6 +4,7 @@ import CollectionCard from '../CollectionCard/CollectionCard'
 import NewCollectionModal from "../NewCollectionModal/NewCollectionModal";
 import API from '../../api';
 import './MyCollectionsContainer.scss'
+import axios from 'axios'
 
 class MyCollectionsContainer extends Component {
   constructor(props) {
@@ -15,11 +16,48 @@ class MyCollectionsContainer extends Component {
   }
 
   componentDidMount() {
-    API.get('collection')
-      .then(res => {
-        const collections = res.data;
-        this.setState({ collections, isLoaded: true });
-      });
+    const credentials = {username: "david", password: "123456"};
+
+    // fetch('http://localhost:3030/api/auth', {
+    //   method: 'post',
+    //   body: {
+    //     "username": "user",
+    //     "password": "123456"
+    //   }
+    // });
+
+    axios
+      .post('http://localhost:3030/api/auth', {
+        username: "user",
+        password: "123456"
+      })
+      .then(response => {
+        console.log('login response: ');
+        console.log(response);
+        if (response.status === 200) {
+          console.log('pocpoc');
+        }
+      }).catch(error => {
+      console.log('login error: ');
+      console.log(error);
+    });
+
+
+    // API.post('login', credentials)
+    //   .then(res => {
+    //     console.log(res.session);
+    //     API.get('collection')
+    //       .then(res => {
+    //         const collections = res.data;
+    //         this.setState({ collections, isLoaded: true });
+    //
+    //       });
+    //   });
+
+
+
+
+
   }
 
   render() {
@@ -64,5 +102,3 @@ class MyCollectionsContainer extends Component {
 }
 
 export default MyCollectionsContainer;
-
-
