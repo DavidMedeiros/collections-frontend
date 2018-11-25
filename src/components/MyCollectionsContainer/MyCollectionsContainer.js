@@ -27,7 +27,7 @@ class MyCollectionsContainer extends Component {
     // });
 
     axios
-      .post('http://localhost:3030/api/auth', {
+      .post('/api/auth', {
         username: "user",
         password: "123456"
       })
