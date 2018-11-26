@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Menu, Container, Image, Icon } from 'semantic-ui-react'
-import './HeaderMenu.scss'
+import './Navbar.scss'
 import logo from '../../resources/logo.png'
 
-class HeaderMenu extends Component {
+class Navbar extends Component {
   state = {};
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name });
@@ -34,7 +34,7 @@ class HeaderMenu extends Component {
             <Icon name='pie graph' /> Análises
           </Menu.Item>
 
-         <Menu.Item
+          <Menu.Item
             name='explore' color='pink'
             active={activeItem === 'explore'}
             onClick={this.handleItemClick} style={{paddingBottom: 20 + 'px'}}
@@ -46,20 +46,16 @@ class HeaderMenu extends Component {
             name='sign-in' color='pink'
             position='right'
             onClick={this.handleItemClick} style={{paddingBottom: 20 + 'px'}}
-           >
+          >
             Sair
           </Menu.Item>
-
         </Container>
 
       </Menu>
-
-
-
     );
   }
 }
 
-export default HeaderMenu;
+export default Navbar;
 
 

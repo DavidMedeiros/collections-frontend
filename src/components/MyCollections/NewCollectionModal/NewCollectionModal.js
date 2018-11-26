@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Modal, Button, Form } from 'semantic-ui-react';
 import './NewCollectionModal.scss'
-import API from "../../api";
+import axios from "axios/index";
 
 
 class NewCollectionModal extends Component {
@@ -36,10 +36,16 @@ class NewCollectionModal extends Component {
       image: this.state.imageURL
     };
 
-    API.post('collection', collection)
-      .then(res => {
-        console.log(res);
-      });
+    axios
+      .post('/api/collection', collection)
+      .then(response => {
+        if (response.status === 201) {
+          console.log('collection created');
+        }
+      }).catch(error => {
+      console.log('new collection error: ');
+      console.log(error);
+    });
   }
 
   render() {
