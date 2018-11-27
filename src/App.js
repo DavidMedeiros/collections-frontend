@@ -3,8 +3,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import Navbar from './components/Navbar/Navbar'
 import Home from "./components/Home/Home";
-import UserHeader from "./components/Home/UserHeader/UserHeader";
-
+import Collection from "./components/Collection/Collection";
 import './App.scss';
 import axios from "axios/index";
 
@@ -43,7 +42,7 @@ class App extends Component {
               <Navbar />
               <Switch>
                 <Route exact path="/" component={Home} />
-                <Route exact path="/cucuc" component={UserHeader} />
+                <Route exact path="/collection" component={Collection} />
               </Switch>
             </div>
           </BrowserRouter>

@@ -21,7 +21,7 @@ class TabsMenu extends Component {
 
     return (
       <Grid columns='equal'>
-        <Grid.Row className='container' centered>
+        <Grid.Row className='tabContainer' centered>
           <Grid.Column>
             <Tab className='tabMenu' menu={{ color: 'pink',secondary: true, pointing: true }} panes={panes} />
           </Grid.Column>
