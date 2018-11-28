@@ -1,23 +1,31 @@
-.centered.row.collectionHeader {
+.ui.grid>.column:only-child, .ui.grid>.row>.column:only-child.collectionHeader {
   height: 320px;
-  background: url(https://pmcvariety.files.wordpress.com/2018/11/lady-gaga-2.jpg) no-repeat center;
+  background: url(https://i0.wp.com/espalhafactos.com/wp-content/uploads/2014/09/186ea290da_99144204_o2.jpg) no-repeat center;
   background-size: 100%;
 }
 
-.collectionHeader .ui.center.aligned.header, .ui.centered.header {
-  margin-top: 10px;
+.cucu{
+  width: 100%;
+  margin: 0;
+  height: 109.7%;
+  margin-top: -14px;
+  background: #00000070;
 }
 
-.ui.grid>.row>.column>img, .ui.grid>.row>img .collectionHeader {
-  margin-top: 10px;
-}
+.collectionHeader {
+  .ui.header {
+    padding-top: 150px;
 
-.collectionHeader .ui.header .content{
-  color:white;
-  text-shadow: 3px 3px 15px black;
-}
+    .content {
+      font-size: 40px;
+      color:white;
+      text-shadow: 3px 3px 15px black;
+    }
 
-.collectionHeader h2.ui.header .sub.header {
-  color: white;
-  text-shadow: 3px 3px 15px black;
+    .sub.header {
+      width: 65rem;
+      color: white;
+      text-shadow: 3px 3px 15px black;
+    }
+  }
 }

@@ -30,7 +30,7 @@ class CollectionsList extends Component {
   render() {
     if (this.state.isLoaded) {
       return(
-        <Card.Group itemsPerRow={this.state.collections.length < 4 ? (this.state.collections.length) : (4)}>
+        <Card.Group style={{paddingLeft: 15 + 'px'}} itemsPerRow={this.state.collections.length < 4 ? (this.state.collections.length) : (4)}>
           {this.state.collections.map(collection => (
             <CollectionCard key={collection._id}
                             image={collection.image} name={collection.name} description={collection.description}

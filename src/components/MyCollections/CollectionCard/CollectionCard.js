@@ -5,7 +5,7 @@ import './CollectionCard.scss'
 class CollectionCard extends Component {
   render() {
     return (
-      <Card className="collectionCard" color="pink" href='#card-example-link-card'>
+      <Card fluid={false} className="collectionCard" color="pink" href='#card-example-link-card'>
         <div style={{ backgroundImage: `url(${this.props.image})` }} className='imageCard' />
         <Card.Content textAlign="left">
           <Card.Header>{this.props.name}</Card.Header>
@@ -21,7 +21,7 @@ class CollectionCard extends Component {
             {this.props.likesAmount}
           </p>
           <p>
-            <Icon name='user' />
+            <Icon name='users' />
             {this.props.followersAmount}
           </p>
         </Card.Content>

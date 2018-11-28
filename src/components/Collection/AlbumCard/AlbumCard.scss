@@ -1,19 +1,20 @@
-.imageCard {
-  height: 15ch;
+.imageAlbumCard {
+  height: 170px;
+  width: 170px;
   background-size: 100%;
 }
 
-.collectionCard p {
+.albumCard p {
   padding-right: 10px;
   display: inline;
   font-size: 12px;
   font-weight: bold;
 }
 
-.collectionCard p:hover {
+.albumCard p:hover {
   color: #e03997 !important;
 }
 
-.collectionCard{
-  width: 258px !important;
+.albumCard {
+  width: 170px !important;
 }

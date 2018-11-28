@@ -1,6 +1,28 @@
- .centered.row.collectionContainer {
+.centered.row.collectionContainer {
   margin-top: -40px;
   background: white;
   //border: 1px solid rgba(34,36,38,.15);
   background-size: 100%;
+}
+
+hr {
+  margin-top: -29px;
+  width: 97.4%;
+  border: 1px solid rgba(34,36,38,.15);
+}
+
+.statisticCollection:hover {
+  color: #e03997 !important;
+}
+
+.statisticCollection{
+  margin-bottom: 3px;
+}
+
+.containerContent{
+  background: white;
+}
+
+.cardAlbumList{
+  width: 100%;
 }
