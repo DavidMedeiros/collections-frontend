@@ -1,20 +1,39 @@
 import React, { Component } from 'react';
 import { Menu, Container, Image, Icon } from 'semantic-ui-react'
+import { withRouter } from 'react-router'
+import { Link } from 'react-router-dom'
 import './Navbar.scss'
 import logo from '../../resources/logo.png'
 
 class Navbar extends Component {
-  state = {};
+  constructor(props) {
+    super(props);
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
+    let location = "";
+    if (props.location.pathname === "/") {
+      location = "home";
+    } else if (props.location.pathname === "/analysis") {
+      location = "analysis";
+    } else if (props.location.pathname === "/explore") {
+      location = "explore";
+    }
+
+    this.state = {
+      activeItem: location
+    }
+  }
+
+  handleItemClick = (e, { name }) => {
+    this.setState({ activeItem: name })
+  }
 
   render() {
-    const { activeItem } = this.state;
+    const { activeItem } = this.state
 
     return (
       <Menu className='headerMenu' pointing secondary  >
         <Container>
-          <Menu.Item>
+          <Menu.Item as={Link} to={'/'}>
             <Image src={logo} size='small' />
           </Menu.Item>
 
@@ -22,6 +41,7 @@ class Navbar extends Component {
             name='home' color='pink'
             active={activeItem === 'home'}
             onClick={this.handleItemClick} style={{paddingBottom: 20 + 'px'}}
+            as={Link} to={'/'}
           >
             <Icon name='home'   /> Página Inicial
           </Menu.Item>
@@ -30,6 +50,7 @@ class Navbar extends Component {
             name='analysis' color='pink'
             active={activeItem === 'analysis'}
             onClick={this.handleItemClick} style={{paddingBottom: 20 + 'px'}}
+            as={Link} to={'/analysis'}
           >
             <Icon name='pie graph' /> Análises
           </Menu.Item>
@@ -38,6 +59,7 @@ class Navbar extends Component {
             name='explore' color='pink'
             active={activeItem === 'explore'}
             onClick={this.handleItemClick} style={{paddingBottom: 20 + 'px'}}
+            as={Link} to={'/songs'}
           >
             <Icon name='sound' /> Explorar Sons
           </Menu.Item>
@@ -46,6 +68,7 @@ class Navbar extends Component {
             name='sign-in' color='pink'
             position='right'
             onClick={this.handleItemClick} style={{paddingBottom: 20 + 'px'}}
+            as={Link} to={'/logout'}
           >
             Sair
           </Menu.Item>
@@ -56,6 +79,6 @@ class Navbar extends Component {
   }
 }
 
-export default Navbar;
+export default withRouter(Navbar);
 
 

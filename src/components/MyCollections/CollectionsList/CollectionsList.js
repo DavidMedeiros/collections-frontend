@@ -28,6 +28,7 @@ class CollectionsList extends Component {
   }
 
   render() {
+    console.log('filho', this.props.teste);
     if (this.state.isLoaded) {
       return(
         <Card.Group style={{paddingLeft: 15 + 'px'}} itemsPerRow={this.state.collections.length < 4 ? (this.state.collections.length) : (4)}>
@@ -35,7 +36,7 @@ class CollectionsList extends Component {
             <CollectionCard key={collection._id}
                             image={collection.image} name={collection.name} description={collection.description}
                             itemsAmount={collection._items.length} likesAmount={collection._likes.length}
-                            followersAmount={collection._followers.length} />
+                            followersAmount={collection._followers.length} link={'/collection/' + collection._id} />
           ))}
         </Card.Group>
       );

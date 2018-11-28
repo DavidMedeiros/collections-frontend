@@ -4,6 +4,22 @@ import NewCollectionModal from "./NewCollectionModal/NewCollectionModal";
 import CollectionsList from "./CollectionsList/CollectionsList";
 
 class MyCollections extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      teste: []
+    }
+  }
+
+  search = event => {
+    console.log(event);
+    this.setState({ teste: event});
+  };
+
+  componentDidUpdate() {
+    console.log(this.state);
+  }
+
   render() {
     return (
       <Grid>
@@ -18,11 +34,11 @@ class MyCollections extends Component {
         </Grid.Column>
 
         <Grid.Column width={4}>
-          <NewCollectionModal />
+          <NewCollectionModal onChange={this.search}/>
         </Grid.Column>
 
         <Grid.Row>
-          <CollectionsList/>
+          <CollectionsList teste={this.state.teste}/>
         </Grid.Row>
       </Grid>
     );

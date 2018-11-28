@@ -1,10 +1,10 @@
 .ui.grid>.column:only-child, .ui.grid>.row>.column:only-child.collectionHeader {
   height: 320px;
-  background: url(https://i0.wp.com/espalhafactos.com/wp-content/uploads/2014/09/186ea290da_99144204_o2.jpg) no-repeat center;
+  background: no-repeat center;
   background-size: 100%;
 }
 
-.cucu{
+.collectionHeaderContainer{
   width: 100%;
   margin: 0;
   height: 109.7%;
@@ -14,7 +14,7 @@
 
 .collectionHeader {
   .ui.header {
-    padding-top: 150px;
+    padding-top: 190px;
 
     .content {
       font-size: 40px;
@@ -23,6 +23,7 @@
     }
 
     .sub.header {
+      margin-top: 5px;
       width: 65rem;
       color: white;
       text-shadow: 3px 3px 15px black;

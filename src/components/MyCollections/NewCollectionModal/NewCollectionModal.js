@@ -40,7 +40,8 @@ class NewCollectionModal extends Component {
       .post('/api/collection', collection)
       .then(response => {
         if (response.status === 201) {
-          console.log('collection created');
+          const { onChange } = this.props;
+          onChange(response.data.data);
         }
       }).catch(error => {
       console.log('new collection error: ');
