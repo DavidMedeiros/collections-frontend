@@ -10,7 +10,7 @@ class CollectionCard extends Component {
         <Card.Content textAlign="left">
           <Card.Header>{this.props.name}</Card.Header>
           <Card.Meta>
-            {this.props.description.substring(0,65)}{(this.props.description.length > 65) ? ' ...' : ''}
+            {this.props.description.substring(0,50)}{(this.props.description.length > 50) ? ' ...' : ''}
           </Card.Meta>
         </Card.Content>
         <Card.Content extra align="right">

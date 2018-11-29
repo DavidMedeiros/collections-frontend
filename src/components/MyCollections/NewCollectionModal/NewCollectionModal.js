@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Modal, Button, Form } from 'semantic-ui-react';
+import { Modal, Button, Form, TextArea } from 'semantic-ui-react';
 import './NewCollectionModal.scss'
 import axios from "axios/index";
-
 
 class NewCollectionModal extends Component {
   constructor(props) {
@@ -14,7 +13,7 @@ class NewCollectionModal extends Component {
   }
 
   show = () => this.setState({ open: true });
-  close = () => this.setState({ open: false });
+  close = () => this.setState({ open: false, name: '', description: '', imageURL: '' });
 
   handleInputChange(event) {
     const target = event.target;
@@ -28,12 +27,11 @@ class NewCollectionModal extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.setState({ open: false, name: '', description: '', imageURL: '' });
 
     const collection = {
-      name: this.state.name,
-      description: this.state.description,
-      image: this.state.imageURL
+      name: this.state.name.trim(),
+      description: this.state.description.trim(),
+      image: this.state.imageURL.trim()
     };
 
     axios
@@ -47,10 +45,15 @@ class NewCollectionModal extends Component {
       console.log('new collection error: ');
       console.log(error);
     });
+
+    this.close();
   }
 
   render() {
     const { open } = this.state;
+
+    const nameLength = this.state.name.trim().length;
+    const descriptionLength = this.state.description.trim().length;
 
     return (
       <div>
@@ -60,20 +63,18 @@ class NewCollectionModal extends Component {
           <Modal.Header>Crie uma coleção</Modal.Header>
           <Modal.Content>
             <Form onSubmit={this.handleSubmit}>
-              <Form.Field>
-                <label>Nome</label>
-                <input placeholder='Dê um nome para a sua coleção' value={this.state.name}
-                       name='name' onChange={this.handleInputChange} />
-              </Form.Field>
+              <Form.Input required label='Nome'  placeholder='Dê um nome para a sua coleção' value={this.state.name}
+                          name='name' onChange={this.handleInputChange} maxLength='23' />
+              <label className={(nameLength < 23) ? 'characterLabel' : 'characterLabelComplete'}>{ nameLength + '/23' }</label>
 
-              <Form.TextArea label='Descrição'
-                             placeholder='Descreva a sua coleção' value={this.state.description}
-                             name='description' onChange={this.handleInputChange}/>
-              <Form.Field>
-                <label>Image URL</label>
-                <input placeholder='Insira o link para uma imagem de capa da sua coleção' value={this.state.imageURL}
-                       name='imageURL' onChange={this.handleInputChange}/>
-              </Form.Field>
+              <Form.Field required control={TextArea} label='Descrição' placeholder='Descreva a sua coleção'
+                          value={this.state.description} maxLength='250'
+                          name='description' onChange={this.handleInputChange}/>
+              <label className={(descriptionLength < 250) ? 'characterLabel' : 'characterLabelComplete'}>{ descriptionLength + '/250' }</label>
+
+              <Form.Input required label='Foto de Capa'
+                          placeholder='Insira o link para uma imagem de capa da sua coleção' value={this.state.imageURL}
+                          name='imageURL' onChange={this.handleInputChange} />
 
               <Modal.Actions>
                 <Button className='saveNewCollection' inverted type='submit' color='pink' floated='right'

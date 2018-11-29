@@ -50,7 +50,10 @@ class App extends Component {
       );
     } else {
       return(
-        <div> Autenticando... </div>
+        <div> Autenticando...
+
+          Certifique-se que você possui um usuário com username: "user", password: "123456" cadastrado no backend
+        </div>
       );
     }
   }

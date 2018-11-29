@@ -1,6 +1,5 @@
 .ui.grid>.column:only-child, .ui.grid>.row>.column:only-child.collectionHeader {
   height: 320px;
-  background: no-repeat center;
   background-size: 100%;
 }
 
@@ -14,7 +13,7 @@
 
 .collectionHeader {
   .ui.header {
-    padding-top: 190px;
+    padding-top: 180px;
 
     .content {
       font-size: 40px;

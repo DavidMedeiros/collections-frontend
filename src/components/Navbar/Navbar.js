@@ -33,7 +33,7 @@ class Navbar extends Component {
     return (
       <Menu className='headerMenu' pointing secondary  >
         <Container>
-          <Menu.Item as={Link} to={'/'}>
+          <Menu.Item>
             <Image src={logo} size='small' />
           </Menu.Item>
 

@@ -107,19 +107,19 @@ class Collection extends Component {
             <Grid columns='equal'>
               <Grid.Row className='collectionContainer' centered>
                 <Grid.Column>
-                  <Label>
+                  <Label className='genreLabel'>
                     Pop
                   </Label>
-                  <Label>
+                  <Label className='genreLabel'>
                     Rock
                   </Label>
-                  <Label>
+                  <Label className='genreLabel'>
                     Disco
                   </Label>
-                  <Label>
+                  <Label className='genreLabel'>
                     90's
                   </Label>
-                  <Label>
+                  <Label className='genreLabel'>
                     Classic Rock
                   </Label>
                 </Grid.Column>
@@ -129,34 +129,34 @@ class Collection extends Component {
                       trigger={
                         <Statistic  color='grey' size='mini'>
                           <Statistic.Value className='statisticCollection'>
-                            <Icon name='dot circle' />
+                            <Icon className='iconBefore' name='dot circle' />
                             {this.state.collection._items.length}
                           </Statistic.Value>
                         </Statistic>
                       }
-                      content="Itens na coleção"
+                      content= { this.state.collection._items.length + ' Itens na coleção' }
                     />
                     <Popup
                       trigger={
                         <Statistic color='grey' size='mini'>
                           <Statistic.Value className='statisticCollection'>
-                            <Icon name='heart' />
+                            <Icon className='iconBefore' name='heart' />
                             {this.state.collection._likes.length}
                           </Statistic.Value >
                         </Statistic>
                       }
-                      content="Curtidas"
+                      content= {this.state.collection._likes.length + ' Curtidas' }
                     />
                     <Popup
                       trigger={
                         <Statistic color='grey' size='mini'>
                           <Statistic.Value className='statisticCollection'>
-                            <Icon name='users' />
+                            <Icon className='iconBefore' name='users' />
                             {this.state.collection._followers.length}
                           </Statistic.Value>
                         </Statistic>
                       }
-                      content="Seguidores"
+                      content= {this.state.collection._followers.length + ' Seguidores' }
                     />
 
                   </div>
