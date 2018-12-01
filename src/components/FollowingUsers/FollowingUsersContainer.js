@@ -53,7 +53,7 @@ class FollowingUsersContainer extends Component {
         </Grid.Column>
 
         <Grid.Row>
-            <Card.Group>
+          <Card.Group>
 
             <Container >
               <List animated selection verticalAlign='middle' size='large'>
@@ -231,7 +231,7 @@ class FollowingUsersContainer extends Component {
               </List>
             </Container>
 
-            </Card.Group>
+          </Card.Group>
         </Grid.Row>
       </Grid>
     );

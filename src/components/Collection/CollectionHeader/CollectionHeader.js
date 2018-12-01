@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import {Header, Grid, Container} from 'semantic-ui-react';
+
+import { Header, Grid, Container } from 'semantic-ui-react';
+
 import './CollectionHeader.scss'
 
 class CollectionHeader extends Component {
   render() {
     return (
       <Grid style={{ backgroundImage: `url(${this.props.image})` }} className='collectionHeader'>
-        <Grid.Row columns={3}>
+        <Grid.Row columns={ 3 }>
           <div className='collectionHeaderContainer'>
             <Container>
               <Grid.Column >
