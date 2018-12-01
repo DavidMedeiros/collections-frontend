@@ -12,65 +12,32 @@ class Collection extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoaded: false,
+      collectionLoaded: false,
+      albumsLoaded: false,
       collection: [],
       genres: ['lala'],
-      albums: [{
-        "_id": '1',
-        "name": "Born This Way",
-        "released_date": "Sat Dec 16 2011 10:15:20 GMT-0300",
-        "released_type": "album",
-        "artist_id": "artistIdNuffsasdmber",
-        "genres": [
-          "pop",
-          "rock",
-          "dance"
-        ],
-        "image": "https://shop.pbs.org/ccstore/v1/images/?source=/file/v4490040077353843221/products/TBLG452.0.jpg&height=940&width=940",
-        "copyright": "Interscope 2011c"
-      },{
-        "_id": '2',
-        "name": "Born This Way",
-        "released_date": "Sat Dec 16 2011 10:15:20 GMT-0300",
-        "released_type": "album",
-        "artist_id": "artistIdNgsuaaamber",
-        "genres": [
-          "pop",
-          "rock",
-          "dance"
-        ],
-        "image": "https://shop.pbs.org/ccstore/v1/images/?source=/file/v4490040077353843221/products/TBLG452.0.jpg&height=940&width=940",
-        "copyright": "Interscope 2011c"
-      },{
-        "_id": '3',
-        "name": "Born This Way",
-        "released_date": "Sat Dec 16 2011 10:15:20 GMT-0300",
-        "released_type": "album",
-        "artist_id": "artistIdNfuasddmber",
-        "genres": [
-          "pop",
-          "rock",
-          "dance"
-        ],
-        "image": "https://shop.pbs.org/ccstore/v1/images/?source=/file/v4490040077353843221/products/TBLG452.0.jpg&height=940&width=940",
-        "copyright": "Interscope 2011c"
-      },{
-        "_id": '4',
-        "name": "Born This Way",
-        "released_date": "Sat Dec 16 2011 10:15:20 GMT-0300",
-        "released_type": "album",
-        "artist_id": "artigstIdasdNumber",
-        "genres": [
-          "pop",
-          "rock",
-          "dance"
-        ],
-        "image": "https://shop.pbs.org/ccstore/v1/images/?source=/file/v4490040077353843221/products/TBLG452.0.jpg&height=940&width=940",
-        "copyright": "Interscope 2011c"
-      }]
+      albums: []
     };
 
-    // this.handleGenres = this.handleGenres.bind(this);
+    this.loadAlbums = this.loadAlbums.bind(this);
+  }
+
+  loadAlbums(){
+    this.state.collection._items.forEach(albumId => {
+      axios
+        .get('/api/album/' + albumId)
+        .then(response => {
+          const album = response.data;
+
+          this.setState((state) => ({
+            albums: state.albums.concat(album)
+          }));
+
+          if (this.state.albums.length === this.state.collection._items.length) {
+            this.setState({ albumsLoaded: true });
+          }
+        });
+    });
   }
 
   componentWillMount() {
@@ -78,28 +45,13 @@ class Collection extends Component {
       .get('/api/collection/' + this.props.match.params.collectionId )
       .then(response => {
         const collection = response.data;
-        console.log(collection);
-        this.setState({ collection: collection, isLoaded: true });
+        this.setState({ collection: collection, collectionLoaded: true });
+        this.loadAlbums();
       });
   }
 
-  // handleGenres() {
-  //   this.state.albums.forEach(function(album){
-  //     let genres = album.genres;
-  //     genres.forEach(function (genre) {
-  //       console.log(this.state.genres);
-  //       // if(!this.state.genres.includes(genre)) {
-  //       //   let newGenres = this.state.genres.push(genre);
-  //       //
-  //       //   this.setState({genres: newGenres});
-  //       // }
-  //     })
-  //   });
-  // }
-
   render() {
-
-    if (this.state.isLoaded) {
+    if (this.state.collectionLoaded && this.state.albumsLoaded) {
       return (
         <div>
           <CollectionHeader name={this.state.collection.name} description={this.state.collection.description} image={this.state.collection.image}/>
