@@ -1,33 +1,27 @@
 import React, { Component } from 'react';
 
-import { Container, Grid, Label, Loader } from 'semantic-ui-react'
+import {Dropdown, Container, Grid, Loader} from 'semantic-ui-react'
 
 import CollectionHeader from "./CollectionHeader/CollectionHeader";
 import AlbumsList from "./AlbumsList/AlbumsList";
 import CollectionStatistic from "./CollectionStatistic/CollectionStatistic";
+import SearchAlbums from "./SearchAlbums/SearchAlbums";
 
 import axios from "axios";
 
 import './Collection.scss'
 
 class Collection extends Component {
-
   constructor(props) {
     super(props);
-    this.state = {
-      collectionLoaded: false,
-      albumsLoaded: false,
-      collection: [],
-      genres: ['Pop', 'Rock', 'Disco', 'Eletronic'],
-      albums: []
-    };
+    this.state = { collectionLoaded: false, albumsLoaded: false, collection: [], albums: [], searchByName: true };
 
     this.loadCollection = this.loadCollection.bind(this);
     this.loadAlbums = this.loadAlbums.bind(this);
   }
 
   componentWillMount() {
-    this.loadCollection()
+    this.loadCollection();
   }
 
   loadCollection() {
@@ -64,31 +58,68 @@ class Collection extends Component {
     });
   }
 
+  handleSearchOption = (e, { value }) => {
+    if (value === 'name') {
+      this.setState({ searchByName: true });
+    } else {
+      this.setState({ searchByName: false });
+    }
+  };
+
+  handleAddAlbum = albumId => {
+    const url = '/api/collection/' + this.state.collection._id + '/album';
+    const data = { "album_id": albumId };
+
+    axios
+      .put(url, data)
+      .then(response => {
+        console.log(response.data.album);
+        this.setState((state) => ({
+          albums: state.albums.concat(response.data.album)
+        }));
+      });
+  };
+
   render() {
-    if (this.state.collectionLoaded) {
+    const { collectionLoaded, collection, searchByName, albumsLoaded, albums } = this.state;
+
+    if (collectionLoaded) {
       return (
         <div>
-          <CollectionHeader name={ this.state.collection.name } description={ this.state.collection.description }
-                            image={ this.state.collection.image }/>
+          <CollectionHeader name={ collection.name }
+                            description={ collection.description }
+                            image={ collection.image }/>
 
           <Container>
             <Grid columns='equal'>
               <Grid.Row className='collectionContainer' centered>
-                <Grid.Column>
-                  { this.state.genres.map(genre => (
-                    <Label key={ genre } className='genreLabel'>
-                      { genre }
-                    </Label>
-                  )) }
+
+                <Grid.Column width={8}>
+                  <SearchAlbums searchByName={ searchByName } onChange={ this.handleAddAlbum }/>
                 </Grid.Column>
 
-                <CollectionStatistic collection={ this.state.collection } />
+                <Grid.Column width={4}>
+
+                  <Dropdown>
+                    <Dropdown.Menu>
+                      <Dropdown.Header icon='search' content='Opções de busca' />
+                      <Dropdown.Divider />
+                      <Dropdown.Item active={ searchByName } onClick={this.handleSearchOption} value='name' text='Nome do Album' />
+                      <Dropdown.Item active={ !searchByName } onClick={this.handleSearchOption} value='artist' text='Albums do Artista' />
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </Grid.Column>
+
+                <Grid.Column width={4}>
+                <CollectionStatistic collection={ collection } itensAmount={ albums.length }/>
+                </Grid.Column>
+
               </Grid.Row>
+
 
               <Grid.Row className='containerContent'>
                 <div className='cardAlbumList'>
-                  <hr/>
-                  <AlbumsList albumsLoaded={ this.state.albumsLoaded } albums={ this.state.albums }/>
+                  <AlbumsList albumsLoaded={ albumsLoaded } albums={ albums }/>
                 </div>
               </Grid.Row>
             </Grid>
@@ -98,7 +129,7 @@ class Collection extends Component {
     } else {
       return (
         <div className='loading'>
-          <Loader active>A sua coleção está sendo carregada, pode levar alguns segundos! *arhhg elfos...* </Loader>
+          <Loader active>A sua coleção está sendo carregada, pode levar alguns segundos! *arhhg elfos...*</Loader>
         </div>
       );
     }

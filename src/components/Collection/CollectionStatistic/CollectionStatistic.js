@@ -1,19 +1,16 @@
 import React, { Component } from 'react';
 
-import { Grid, Icon, Statistic, Popup } from 'semantic-ui-react'
+import { Grid, Icon, Button, Label } from 'semantic-ui-react'
 
-import FollowersCollectionModal from "../FollowersCollectionModal/FollowersCollectionModal";
-import LikesCollectionModal from "../LikesCollectionModal/LikesCollectionModal";
+import FollowersCollectionModal from "./FollowersCollectionModal/FollowersCollectionModal";
+import LikesCollectionModal from "./LikesCollectionModal/LikesCollectionModal";
 
 import './CollectionStatistic.scss'
 
 class CollectionStatistic extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      followersModal: false,
-      likesModal: false
-    };
+    this.state = { followersModal: false, likesModal: false };
   }
 
   openFollowersModal = () => this.setState({ followersModal: true });
@@ -35,39 +32,32 @@ class CollectionStatistic extends Component {
           <FollowersCollectionModal show={this.state.followersModal} close={this.handleCloseFollowersModal}/>
           <LikesCollectionModal show={this.state.likesModal} close={this.handleCloseLikesModal}/>
 
-          <Popup
-            trigger={
-              <Statistic color='grey' size='mini'>
-                <Statistic.Value className='statisticCollection'>
-                  <Icon className='iconBefore' name='dot circle'/>
-                  { this.props.collection._items.length }
-                </Statistic.Value>
-              </Statistic>
-            }
-            content={ this.props.collection._items.length + ' Itens na coleção' }
-          />
-          <Popup
-            trigger={
-              <Statistic color='grey' size='mini' onClick={ this.openLikesModal }>
-                <Statistic.Value className='statisticCollection'>
-                  <Icon className='iconBefore' name='heart'/>
-                  { this.props.collection._likes.length }
-                </Statistic.Value>
-              </Statistic>
-            }
-            content={ this.props.collection._likes.length + ' Curtidas' }
-          />
-          <Popup
-            trigger={
-              <Statistic color='grey' size='mini' onClick={ this.openFollowersModal }>
-                <Statistic.Value className='statisticCollection'>
-                  <Icon className='iconBefore' name='users'/>
-                  { this.props.collection._followers.length }
-                </Statistic.Value>
-              </Statistic>
-            }
-            content={ this.props.collection._followers.length + ' Seguidores' }
-          />
+          <Button as='div' labelPosition='right'>
+            <Button compact icon>
+              <Icon name='dot circle' />
+            </Button>
+            <Label as='a' basic pointing='left'>
+              { this.props.itensAmount }
+            </Label>
+          </Button>
+
+          <Button as='div' labelPosition='right'>
+            <Button compact icon>
+              <Icon name='heart' />
+            </Button>
+            <Label as='a' basic pointing='left' onClick={ this.openLikesModal }>
+              { this.props.collection._likes.length }
+            </Label>
+          </Button>
+
+          <Button as='div' labelPosition='right'>
+            <Button compact icon>
+              <Icon name='users' />
+            </Button>
+            <Label as='a' basic pointing='left' onClick={ this.openFollowersModal }>
+              { this.props.collection._followers.length }
+            </Label>
+          </Button>
         </div>
       </Grid.Column>
     );

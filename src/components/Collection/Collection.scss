@@ -23,3 +23,12 @@ hr {
   background: #e03997;
   color: white;
 }
+
+i.icon.dropdown:before {
+  color: #e03997;
+  margin-left: -40px;
+}
+
+.ui.dropdown .menu>.header{
+  color: #e03997;
+}

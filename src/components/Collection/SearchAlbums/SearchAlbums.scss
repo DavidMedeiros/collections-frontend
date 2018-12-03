@@ -1,0 +1,50 @@
+.ui.loading.search {
+  margin: 0 !important;
+}
+
+.searchResult {
+  position: absolute;
+  left: 30px;
+  transform-origin: center top;
+  white-space: normal;
+  text-align: left;
+  text-transform: none;
+  background: #fff;
+  margin-top: .5em;
+  width: 25em;
+  border-radius: .28571429rem;
+  box-shadow: 0 2px 4px 0 rgba(34, 36, 38, .12), 0 2px 10px 0 rgba(34, 36, 38, .15);
+  border: 1px solid #d4d4d5;
+  z-index: 998;
+}
+
+.albumName {
+  display: inline;
+  font-size: 14px;
+  color: #939395;
+}
+
+.albumDescription {
+  color: #bababc;
+  font-size: 12px;
+}
+
+.ui.pink.button.addToCollectionButton {
+  margin-top: 4px;
+}
+
+.ui.pink.mini.circular.icon.button.addAlbum {
+  margin-top: .75rem;
+}
+
+.ui.input {
+  display: flex;
+}
+
+.ui.icon.input>input:focus {
+  border-color: rgba(224, 57, 151, 0.37) !important;
+}
+
+.ui.search .prompt~.search.icon {
+  color: #e03997;
+}
