@@ -1,0 +1,61 @@
+.albumContainer {
+  margin-top: -1rem;
+  background-color: white;
+  padding-top: 25px;
+  padding-right: 35px;
+  padding-bottom: 35px;
+  padding-left: 35px;
+}
+
+.ui.header.albumName {
+  font-size: 40px;
+  font-weight: bold;
+  margin-top: 8px;
+  padding-top: 20px;
+}
+
+h2.ui.header .sub.header.albumArtist {
+  padding-top: 20px;
+  font-size: 20px;
+  color: rgba(0,0,0,.6);
+}
+
+h2.ui.header .sub.header.albumDescription {
+  font-size: 13px;
+}
+
+h2.ui.header .sub.header.pipe {
+  font-size: 40px;
+}
+
+.header.trackName {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: rgba(0,0,0,.6) !important;
+}
+
+.header.trackName:hover {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: #e03997!important;
+}
+
+.trackDuration {
+  color: rgba(0,0,0,.4) !important;
+  padding-top: 10px !important;
+  font-size: 13px;
+}
+
+.label.genreLabel {
+  background: #e8e8e878;
+  margin: 5px;
+}
+
+.genreLabel:hover {
+  background: #e03997;
+  color: white;
+}
+
+.labels {
+  margin-top: 10px;
+}

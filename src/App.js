@@ -4,8 +4,11 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Navbar from './components/Navbar/Navbar'
 import Home from "./components/Home/Home";
 import Collection from "./components/Collection/Collection";
-import './App.scss';
+import Album from "./components/Album/Album";
+
 import axios from "axios/index";
+
+import './App.scss';
 
 class App extends Component {
   constructor(props) {
@@ -43,6 +46,7 @@ class App extends Component {
               <Switch>
                 <Route exact path="/" component={Home} />
                 <Route exact path="/collection/:collectionId" component={Collection} />
+                <Route exact path="/album" component={Album} />
               </Switch>
             </div>
           </BrowserRouter>
