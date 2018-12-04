@@ -73,7 +73,6 @@ class Collection extends Component {
     axios
       .put(url, data)
       .then(response => {
-        console.log(response.data.album);
         this.setState((state) => ({
           albums: state.albums.concat(response.data.album)
         }));

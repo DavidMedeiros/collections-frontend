@@ -12,11 +12,12 @@ class SearchAlbums extends Component {
     this.resetComponent()
   }
 
-  resetComponent = () => this.setState({ isLoading: false, results: [], value: '' });
+  resetComponent = () => this.setState({ isLoading: false, results: [], value: '', hasResults: false });
 
   handleAddAlbum = (e, { value }) => {
     const { onChange } = this.props;
     onChange(value);
+    this.setState({ hasResults: false, value: '' });
   };
 
   handleSearchChange = (e, { value }) => {
@@ -40,17 +41,24 @@ class SearchAlbums extends Component {
           this.setState({
             isLoading: false,
             results: albums,
+            hasResults: albums.length > 0
           });
         });
 
     }, 300)
   };
 
+  handleClick = () => {
+    if (this.state.results.length > 0){
+      this.setState({ hasResults: true });
+    }
+  };
+
   render() {
-    const { value, results } = this.state;
+    const { value, results, hasResults } = this.state;
     let searchResult;
 
-    if(results.length > 0) {
+    if(hasResults) {
       searchResult = (
         <div className="searchResult">
           <List divided selection verticalAlign='middle' size='large'>
@@ -71,7 +79,7 @@ class SearchAlbums extends Component {
           </List>
         </div>
       );
-    } else if(results.length < 1 && value.length > 0) {
+    } else if(!hasResults && value.length > 0) {
       searchResult = (
         <div style={{ padding: 15 + 'px' }} className="searchResult">
           <Header color='pink' size='tiny'>
@@ -87,7 +95,7 @@ class SearchAlbums extends Component {
 
     return (
       <div>
-        <Search placeholder='Encontre albums e adicione-os à coleção' loading={false} showNoResults={false}
+        <Search placeholder='Encontre albums e adicione-os à coleção' loading={false} showNoResults={false} onClick={this.handleClick}
                 onSearchChange={_.debounce(this.handleSearchChange, 500, { leading: true })}/>
         { searchResult }
       </div>
