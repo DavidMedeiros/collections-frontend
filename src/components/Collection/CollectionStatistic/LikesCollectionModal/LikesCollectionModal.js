@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Modal } from 'semantic-ui-react';
+import CompactUsersList from "../../../UsersList/CompactUsersList/CompactUsersList";
 
 class LikesCollectionModal extends Component {
   close = () => {
@@ -12,10 +13,9 @@ class LikesCollectionModal extends Component {
       <div>
         <Modal size='tiny' open={ this.props.show } onClose={ this.close }>
           <Modal.Header>Usuários que curtiram</Modal.Header>
-          <Modal.Content>
-            <p>Anira</p>
-            <p>Pabla</p>
-            <p>70kdol</p>
+          <Modal.Content scrolling>
+            {/*TODO Passar props dos usuarios que deram like*/}
+            <CompactUsersList/>
           </Modal.Content>
         </Modal>
       </div>
