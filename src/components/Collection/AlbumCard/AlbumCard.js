@@ -7,7 +7,7 @@ import './AlbumCard.scss'
 class AlbumCard extends Component {
   render() {
     return (
-      <Card fluid={false} className="albumCard" color="pink" href='/album'>
+      <Card fluid={false} className="albumCard" color="pink" href={ this.props.link }>
         <div style={{ backgroundImage: `url(${this.props.image})` }} className='imageAlbumCard' />
         <Card.Content textAlign="left">
           <Card.Header>{ this.props.name }</Card.Header>

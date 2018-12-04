@@ -46,7 +46,7 @@ class App extends Component {
               <Switch>
                 <Route exact path="/" component={Home} />
                 <Route exact path="/collection/:collectionId" component={Collection} />
-                <Route exact path="/album" component={Album} />
+                <Route exact path="/album/:albumId" component={Album} />
               </Switch>
             </div>
           </BrowserRouter>

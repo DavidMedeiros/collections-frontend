@@ -13,7 +13,7 @@ class AlbumsList extends Component {
           <Container style={{ padding: 15 + 'px' }}>
             <Card.Group itemsPerRow={ this.props.albums.length < 7 ? (this.props.albums.length) : (7) }>
               { this.props.albums.map(album => (
-                <AlbumCard key={ album._id } image={ album.image } name={ album.name }
+                <AlbumCard key={ album._id } image={ album.image } name={ album.name } link={'/album/' + album._id}
                            releasedYear={ new Date(album.released_date).getUTCFullYear() } />
               )) }
             </Card.Group>

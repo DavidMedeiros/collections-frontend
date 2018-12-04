@@ -1,28 +1,71 @@
 import React, { Component } from 'react';
 
-import {List, Container, Grid, Loader, Image, Header, Label} from 'semantic-ui-react'
+import { Container, Grid, Loader, Image, Header, Label } from 'semantic-ui-react'
+
+import TracksList from "./TracksList/TracksList";
+
+import axios from "axios/index";
 
 import './Album.scss'
 
 class Album extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      genres: ['Pop', 'Rock', 'Disco', 'Eletronic', 'Dance', 'Sex', 'Art', 'Pop'],
-    };
+    this.state = { album: [], tracks: [], albumLoaded: false, tracksLoaded: false };
+    this.loadAlbum = this.loadAlbum.bind(this);
+  }
+
+  componentWillMount() {
+    this.loadAlbum();
+  }
+
+  loadAlbum() {
+    axios
+      .get('/api/album/' + this.props.match.params.albumId)
+      .then(response => {
+        const album = response.data;
+
+        this.setState({ album: album, albumLoaded: true });
+
+        if (album._tracks.length < 1) {
+          this.setState({ tracksLoaded: true });
+        } else {
+          this.loadTracks();
+        }
+      });
+  }
+
+  loadTracks() {
+    this.state.album._tracks.forEach(trackId => {
+      axios
+        .get('/api/track/' + trackId)
+        .then(response => {
+          const track = response.data;
+
+          this.setState((state) => ({
+            tracks: state.tracks.concat(track)
+          }));
+
+          if (this.state.tracks.length === this.state.album._tracks.length) {
+            this.setState({ tracksLoaded: true });
+          }
+        });
+    });
   }
 
   render() {
-    if (true) {
+    const { albumLoaded, album, tracksLoaded, tracks } = this.state;
+
+    if (albumLoaded) {
       return (
         <div>
           <Container className='albumContainer'>
             <Grid>
               <Grid.Row>
                 <Grid.Column width={5}>
-                  <Image width={300} height={300} src='http://s2.glbimg.com/tm7qm9_X2t1Xf76x2Uu_eCqD_u8=/e.glbimg.com/og/ed/f/original/2016/09/15/gaga.jpg' />
+                  <Image width={300} height={300} src={ album.image } />
                   <div className='labels' align="center">
-                    { this.state.genres.map(genre => (
+                    { album.genres.map(genre => (
                       <Label key={ genre } className='genreLabel'>
                         { genre }
                       </Label>
@@ -34,102 +77,17 @@ class Album extends Component {
                   <Grid columns='equal'>
                     <Grid.Column style={ {display: 'contents'} } >
                       <Header className='albumName' as='h2'>
-                        Joanne |
+                        { album.name } |
                       </Header>
                     </Grid.Column>
                     <Grid.Column>
                       <Header className='albumArtist' as='h2'>
                         <Header.Subheader className='albumArtist'>Lady Gaga</Header.Subheader>
-                        <Header.Subheader className='albumDescription'>2016 - 11 músicas</Header.Subheader>
+                        <Header.Subheader className='albumDescription'>{ new Date(album.released_date).getUTCFullYear() } - { album._tracks.length }</Header.Subheader>
                       </Header>
                     </Grid.Column>
                   </Grid>
-                  <List animated divided selection verticalAlign='middle' size='large'>
-
-                    <List.Item className='trackList'>
-                      <List.Content verticalAlign='bottom' className='trackDuration' floated='right'>
-                        3:37
-                      </List.Content>
-                      <List.Content verticalAlign='middle'>
-                        <List.Header as='h3' className='trackName'>Diamond Heart</List.Header>
-                      </List.Content>
-                    </List.Item>
-
-                    <List.Item className='trackList'>
-                      <List.Content verticalAlign='bottom' className='trackDuration' floated='right'>
-                        3:70
-                      </List.Content>
-                      <List.Content verticalAlign='middle'>
-                        <List.Header as='h3' className='trackName'>A-YO</List.Header>
-                      </List.Content>
-                    </List.Item>
-
-                    <List.Item className='trackList'>
-                      <List.Content verticalAlign='bottom' className='trackDuration' floated='right'>
-                        2:70
-                      </List.Content>
-                      <List.Content verticalAlign='middle'>
-                        <List.Header as='h3' className='trackName'>Joanne</List.Header>
-                      </List.Content>
-                    </List.Item>
-
-                    <List.Item className='trackList'>
-                      <List.Content verticalAlign='bottom' className='trackDuration' floated='right'>
-                        4:10
-                      </List.Content>
-                      <List.Content verticalAlign='middle'>
-                        <List.Header as='h3' className='trackName'>John Wayne</List.Header>
-                      </List.Content>
-                    </List.Item>
-
-                    <List.Item className='trackList'>
-                      <List.Content verticalAlign='bottom' className='trackDuration' floated='right'>
-                        3:13
-                      </List.Content>
-                      <List.Content verticalAlign='middle'>
-                        <List.Header as='h3' className='trackName'>Danci' Circles</List.Header>
-                      </List.Content>
-                    </List.Item>
-
-                    <List.Item className='trackList'>
-                      <List.Content verticalAlign='bottom' className='trackDuration' floated='right'>
-                        4:05
-                      </List.Content>
-                      <List.Content verticalAlign='middle'>
-                        <List.Header as='h3' className='trackName'>Perfect Illusion</List.Header>
-                      </List.Content>
-                    </List.Item>
-
-                    <List.Item className='trackList'>
-                      <List.Content verticalAlign='bottom' className='trackDuration' floated='right'>
-                        3:05
-                      </List.Content>
-                      <List.Content verticalAlign='middle'>
-                        <List.Header as='h3' className='trackName'>Milho reasons</List.Header>
-                      </List.Content>
-                    </List.Item>
-
-                    <List.Item className='trackList'>
-                      <List.Content verticalAlign='bottom' className='trackDuration' floated='right'>
-                        2:55
-                      </List.Content>
-                      <List.Content verticalAlign='middle'>
-                        <List.Header as='h3' className='trackName'>Sinners Prayer</List.Header>
-                      </List.Content>
-                    </List.Item>
-
-                    <List.Item className='trackList'>
-                      <List.Content verticalAlign='bottom' className='trackDuration' floated='right'>
-                        4:00
-                      </List.Content>
-                      <List.Content verticalAlign='middle'>
-                        <List.Header as='h3' className='trackName'>Come to Mama</List.Header>
-                      </List.Content>
-                    </List.Item>
-
-
-
-                  </List>
+                  <TracksList tracksLoaded={ tracksLoaded } tracks={ tracks }/>
                 </Grid.Column>
               </Grid.Row>
             </Grid>
@@ -139,7 +97,7 @@ class Album extends Component {
     } else {
       return (
         <div className='loading'>
-          <Loader active>A sua coleção está sendo carregada, pode levar alguns segundos! *arhhg elfos...*</Loader>
+          <Loader active>Este álbum está sendo carregado, pode levar alguns segundos! *arhhg elfos...*</Loader>
         </div>
       );
     }
