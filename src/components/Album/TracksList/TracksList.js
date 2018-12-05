@@ -11,7 +11,7 @@ class TracksList extends Component {
         return (
           <List animated divided selection verticalAlign='middle' size='large'>
             { this.props.tracks.map(track => (
-              <List.Item className='trackList'>
+              <List.Item className='trackList' key={ this.props._id }>
                 <List.Content verticalAlign='bottom' className='trackDuration' floated='right'>
                   { track.length }
                 </List.Content>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Header, Grid, List, Image, Button, Container } from 'semantic-ui-react';
+import { Card, List, Image, Button, Container } from 'semantic-ui-react';
 import './CompactUsersList.scss'
 
 class CompactUsersList extends Component {
