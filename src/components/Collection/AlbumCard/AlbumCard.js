@@ -9,8 +9,8 @@ class AlbumCard extends Component {
     return (
       <Card fluid={false} className="albumCard" color="pink" href={ this.props.link }>
         <div style={{ backgroundImage: `url(${this.props.image})` }} className='imageAlbumCard' />
-        <Card.Content textAlign="left">
-          <Card.Header>{ this.props.name }</Card.Header>
+        <Card.Content className='albumCardContent' textAlign="left">
+          <Card.Header>{this.props.name.substring(0,13)}{(this.props.name.length > 13) ? '...' : ''}</Card.Header>
           <Card.Meta textAlign='right'>{ this.props.releasedYear }</Card.Meta>
         </Card.Content>
       </Card>

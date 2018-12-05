@@ -27,9 +27,8 @@ class AlbumsList extends Component {
               <Header.Content>
                 Esta coleções ainda não possui itens
                 <Header.Subheader>
-                  Até o presente momento, itens são adicionados apenas utilizando o servidor backend
-                  Para isto, deve-se criar um artista, em seguida criar um album associando o id do artista. Por fim,
-                  adicionar o album a coleção.
+                  Adicione itens utilizando a barra de pesquisa acima.
+                  É possível buscar itens pelo nome ou que estão associados a um determinado artista.
                 </Header.Subheader>
               </Header.Content>
             </Header></Container>

@@ -18,3 +18,7 @@
 .albumCard {
   width: 170px !important;
 }
+
+.ui.cards>.card>.content.albumCardContent {
+  padding-bottom: .5rem;
+}
