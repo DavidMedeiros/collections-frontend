@@ -15,7 +15,7 @@ class Album extends Component {
     this.loadAlbum = this.loadAlbum.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.loadAlbum();
   }
 
@@ -65,8 +65,8 @@ class Album extends Component {
                 <Grid.Column width={5}>
                   <Image width={300} height={300} src={ album.image } />
                   <div className='labels' align="center">
-                    { album.genres.map(genre => (
-                      <Label key={ genre } className='genreLabel'>
+                    { album.genres.map((genre, i) => (
+                      <Label key={ i } className='genreLabel'>
                         { genre }
                       </Label>
                     )) }

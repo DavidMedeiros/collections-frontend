@@ -21,7 +21,7 @@ class MyCollections extends Component {
     }));
   };
 
-  componentWillMount() {
+  componentDidMount() {
     axios
       .get('/api/collection')
       .then(response => {

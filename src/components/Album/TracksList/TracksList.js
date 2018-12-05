@@ -10,8 +10,8 @@ class TracksList extends Component {
     if (this.props.tracksLoaded) {
         return (
           <List animated divided selection verticalAlign='middle' size='large'>
-            { this.props.tracks.map(track => (
-              <List.Item className='trackList' key={ this.props._id }>
+            { this.props.tracks.map((track, i) => (
+              <List.Item className='trackList' key={ i }>
                 <List.Content verticalAlign='bottom' className='trackDuration' floated='right'>
                   { track.length }
                 </List.Content>

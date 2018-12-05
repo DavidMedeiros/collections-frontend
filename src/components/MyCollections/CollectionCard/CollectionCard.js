@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 import { Card, Icon } from 'semantic-ui-react';
 import './CollectionCard.scss'
+import {Link} from "react-router-dom";
 
 class CollectionCard extends Component {
   render() {
     return (
-      <Card fluid={false} className="collectionCard" color="pink" href={this.props.link}>
+      <Card fluid={false} className="collectionCard" color="pink" as={ Link } to={this.props.link}>
         <div style={{ backgroundImage: `url(${this.props.image})` }} className='imageCard' />
         <Card.Content textAlign="left">
-          <Card.Header>{this.props.name}</Card.Header>
+          <Card.Header>
+            {this.props.name.substring(0,16)}{(this.props.name.length > 16) ? ' ...' : ''}
+          </Card.Header>
           <Card.Meta>
-            {this.props.description.substring(0,50)}{(this.props.description.length > 50) ? ' ...' : ''}
+            {this.props.description.substring(0,22)}{(this.props.description.length > 22) ? ' ...' : ''}
           </Card.Meta>
         </Card.Content>
         <Card.Content extra align="right">

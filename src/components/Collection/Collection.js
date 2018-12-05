@@ -20,7 +20,7 @@ class Collection extends Component {
     this.loadAlbums = this.loadAlbums.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.loadCollection();
   }
 

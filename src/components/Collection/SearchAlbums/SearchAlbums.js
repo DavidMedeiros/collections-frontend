@@ -8,11 +8,10 @@ import axios from "axios/index";
 import "./SearchAlbums.scss"
 
 class SearchAlbums extends Component {
-  componentWillMount() {
-    this.resetComponent()
+  constructor(props) {
+    super(props);
+    this.state = { isLoading: false, results: [], value: '', hasResults: false };
   }
-
-  resetComponent = () => this.setState({ isLoading: false, results: [], value: '', hasResults: false });
 
   handleAddAlbum = (e, { value }) => {
     const { onChange } = this.props;
