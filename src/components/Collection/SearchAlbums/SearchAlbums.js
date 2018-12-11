@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 import { Search, List, Button, Image, Header, Icon} from 'semantic-ui-react'
 
 import axios from "axios/index";
+
 import "./SearchAlbums.scss"
 
 class SearchAlbums extends Component {
@@ -64,13 +65,16 @@ class SearchAlbums extends Component {
             {results.map(album => (
               <List.Item key={album._id}>
                 <List.Content floated='right'>
-                  <Button className='addAlbum' circular color='pink' size='mini' value={ album._id } icon='add' onClick={this.handleAddAlbum}/>
+                  <Button className='addAlbum' circular color='pink' size='mini' value={ album._id } icon='add'
+                          onClick={this.handleAddAlbum}/>
                 </List.Content>
                 <Image width={50} height={50} src={ album.image } />
                 <List.Content>
                   <List.Header className='albumName'>{ album.name }</List.Header>
                   <List.Description>
-                    <p className='albumDescription'> { album.released_type } - { new Date(album.released_date).getUTCFullYear() } </p>
+                    <p className='albumDescription'>
+                      { album.released_type } - { new Date(album.released_date).getUTCFullYear() }
+                    </p>
                   </List.Description>
                 </List.Content>
               </List.Item>
@@ -94,8 +98,8 @@ class SearchAlbums extends Component {
 
     return (
       <div>
-        <Search placeholder='Encontre albums e adicione-os à coleção' loading={false} showNoResults={false} onClick={this.handleClick}
-                onSearchChange={_.debounce(this.handleSearchChange, 500, { leading: true })}/>
+        <Search placeholder='Encontre albums e adicione-os à coleção' loading={false} showNoResults={false}
+                onClick={this.handleClick} onSearchChange={_.debounce(this.handleSearchChange, 500, { leading: true })}/>
         { searchResult }
       </div>
     )
@@ -103,5 +107,3 @@ class SearchAlbums extends Component {
 }
 
 export default SearchAlbums;
-
-

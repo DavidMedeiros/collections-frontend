@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+
 import { Modal } from 'semantic-ui-react';
+
 import CompactUsersList from "../../../UsersList/CompactUsersList/CompactUsersList";
 
 class FollowersCollectionModal extends Component {

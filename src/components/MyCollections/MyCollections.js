@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
+
 import {Header, Grid, Loader, Icon} from 'semantic-ui-react';
+
 import NewCollectionModal from "./NewCollectionModal/NewCollectionModal";
 import CollectionsList from "./CollectionsList/CollectionsList";
-import axios from "axios/index";
-import './MyCollections.scss'
 
+import axios from "axios/index";
+
+import './MyCollections.scss'
 
 class MyCollections extends Component {
   constructor(props) {
@@ -43,15 +46,15 @@ class MyCollections extends Component {
       } else {
         collectionsContent = (
           <div>
-          <Grid.Row>
-            <Header color='pink' size='tiny'>
-              <Icon name='times circle outline' />
-              <Header.Content>
-                Você ainda não possui coleções
-                <Header.Subheader>Crie uma nova clicando no botão <b>Nova Coleção</b>  acima </Header.Subheader>
-              </Header.Content>
-            </Header>
-          </Grid.Row> </div>
+            <Grid.Row>
+              <Header color='pink' size='tiny'>
+                <Icon name='times circle outline' />
+                <Header.Content>
+                  Você ainda não possui coleções
+                  <Header.Subheader>Crie uma nova clicando no botão <b>Nova Coleção</b>  acima </Header.Subheader>
+                </Header.Content>
+              </Header>
+            </Grid.Row> </div>
         );
       }
     } else {
@@ -77,7 +80,6 @@ class MyCollections extends Component {
         <Grid.Column width={4}>
           <NewCollectionModal onChange={this.handleNewCollection}/>
         </Grid.Column>
-
         { collectionsContent }
       </Grid>
     );

@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+
 import { Tab, Grid } from 'semantic-ui-react';
-import FollowingUsersContainer from '../../FollowingUsers/FollowingUsersContainer'
-import './TabsMenu.scss'
+
+import FollowingUsersContainer from '../../FollowingUsers/FollowingUsersContainer';
 import MyCollections from "../../MyCollections/MyCollections";
+
+import './TabsMenu.scss';
 
 class TabsMenu extends Component {
 
@@ -11,11 +14,11 @@ class TabsMenu extends Component {
       { menuItem: 'Minhas Colecoes', render: () =>
           <Tab.Pane className='myCollections' attached={true}><MyCollections /></Tab.Pane>
       },
-      { menuItem: 'Seguindo Usuários', render: () =>
+      { menuItem: 'Seguindo', render: () =>
           <Tab.Pane className='followingUsers' attached={true}><FollowingUsersContainer /></Tab.Pane>
       },
-      { menuItem: 'Tab 3', render: () =>
-          <Tab.Pane attached={true}>Tab 3 Content</Tab.Pane>
+      { menuItem: 'Seguidores', render: () =>
+          <Tab.Pane attached={true}>Work in Progress</Tab.Pane>
       },
     ];
 

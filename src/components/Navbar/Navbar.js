@@ -43,7 +43,7 @@ class Navbar extends Component {
             onClick={this.handleItemClick} style={{paddingBottom: 20 + 'px'}}
             as={Link} to={'/'}
           >
-            <Icon name='home'   /> Página Inicial
+            <Icon name='home'/> Página Inicial
           </Menu.Item>
 
           <Menu.Item
@@ -52,7 +52,7 @@ class Navbar extends Component {
             onClick={this.handleItemClick} style={{paddingBottom: 20 + 'px'}}
             as={Link} to={'/analysis'}
           >
-            <Icon name='pie graph' /> Análises
+            <Icon name='pie graph'/> Análises
           </Menu.Item>
 
           <Menu.Item
@@ -61,7 +61,7 @@ class Navbar extends Component {
             onClick={this.handleItemClick} style={{paddingBottom: 20 + 'px'}}
             as={Link} to={'/songs'}
           >
-            <Icon name='sound' /> Explorar Sons
+            <Icon name='sound'/> Explorar Sons
           </Menu.Item>
 
           <Menu.Item

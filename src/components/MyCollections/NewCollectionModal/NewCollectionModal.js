@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+
 import { Modal, Button, Form, TextArea } from 'semantic-ui-react';
-import './NewCollectionModal.scss'
+
 import axios from "axios/index";
+
+import './NewCollectionModal.scss';
 
 class NewCollectionModal extends Component {
   constructor(props) {
@@ -90,5 +93,3 @@ class NewCollectionModal extends Component {
 }
 
 export default NewCollectionModal;
-
-

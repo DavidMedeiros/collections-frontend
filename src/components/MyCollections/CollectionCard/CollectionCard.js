@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+
 import { Card, Icon } from 'semantic-ui-react';
-import './CollectionCard.scss'
+
 import {Link} from "react-router-dom";
+
+import './CollectionCard.scss';
 
 class CollectionCard extends Component {
   render() {
@@ -36,5 +39,3 @@ class CollectionCard extends Component {
 }
 
 export default CollectionCard;
-
-

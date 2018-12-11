@@ -5,7 +5,6 @@ import { Container, Card, Loader, Header, Icon } from 'semantic-ui-react'
 import AlbumCard from "../AlbumCard/AlbumCard";
 
 class AlbumsList extends Component {
-
   render() {
     if (this.props.albumsLoaded) {
       if (this.props.albums.length > 0) {

@@ -85,36 +85,32 @@ class Collection extends Component {
     if (collectionLoaded) {
       return (
         <div>
-          <CollectionHeader name={ collection.name }
-                            description={ collection.description }
-                            image={ collection.image }/>
+          <CollectionHeader name={ collection.name } description={ collection.description } image={ collection.image }/>
 
           <Container>
             <Grid columns='equal'>
               <Grid.Row className='collectionContainer' centered>
-
                 <Grid.Column width={8}>
                   <SearchAlbums searchByName={ searchByName } onChange={ this.handleAddAlbum }/>
                 </Grid.Column>
 
                 <Grid.Column width={4}>
-
                   <Dropdown>
                     <Dropdown.Menu>
                       <Dropdown.Header icon='search' content='Opções de busca' />
                       <Dropdown.Divider />
-                      <Dropdown.Item active={ searchByName } onClick={this.handleSearchOption} value='name' text='Nome do Album' />
-                      <Dropdown.Item active={ !searchByName } onClick={this.handleSearchOption} value='artist' text='Albums do Artista' />
+                      <Dropdown.Item active={ searchByName } onClick={this.handleSearchOption}
+                                     value='name' text='Nome do Album' />
+                      <Dropdown.Item active={ !searchByName } onClick={this.handleSearchOption}
+                                     value='artist' text='Albums do Artista' />
                     </Dropdown.Menu>
                   </Dropdown>
                 </Grid.Column>
 
                 <Grid.Column width={4}>
-                <CollectionStatistic collection={ collection } itensAmount={ albums.length }/>
+                  <CollectionStatistic collection={ collection } itensAmount={ albums.length }/>
                 </Grid.Column>
-
               </Grid.Row>
-
 
               <Grid.Row className='containerContent'>
                 <div className='cardAlbumList'>

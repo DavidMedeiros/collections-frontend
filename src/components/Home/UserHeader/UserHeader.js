@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+
 import { Header, Grid, Image } from 'semantic-ui-react';
-import './UserHeader.scss'
+
+import './UserHeader.scss';
 
 class UserHeader extends Component {
   render() {
@@ -12,7 +14,7 @@ class UserHeader extends Component {
                    size='small' circular centered/>
             <Header as='h2' textAlign='center'>
               <Header.Content > David Souza
-                <Header.Subheader>@davinthechaos</Header.Subheader>
+                <Header.Subheader>@davidsouza</Header.Subheader>
               </Header.Content>
             </Header>
           </Grid.Column>

@@ -83,7 +83,9 @@ class Album extends Component {
                     <Grid.Column>
                       <Header className='albumArtist' as='h2'>
                         <Header.Subheader className='albumArtist'>{ album.artist_name }</Header.Subheader>
-                        <Header.Subheader className='albumDescription'>{ new Date(album.released_date).getUTCFullYear() } - { album._tracks.length }</Header.Subheader>
+                        <Header.Subheader className='albumDescription'>
+                          { new Date(album.released_date).getUTCFullYear() } - { album._tracks.length }
+                        </Header.Subheader>
                       </Header>
                     </Grid.Column>
                   </Grid>
