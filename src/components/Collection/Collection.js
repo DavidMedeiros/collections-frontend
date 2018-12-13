@@ -7,7 +7,7 @@ import AlbumsList from "./AlbumsList/AlbumsList";
 import CollectionStatistic from "./CollectionStatistic/CollectionStatistic";
 import SearchAlbums from "./SearchAlbums/SearchAlbums";
 
-import axios from "axios";
+import API from '../../api';
 
 import './Collection.scss'
 
@@ -25,7 +25,7 @@ class Collection extends Component {
   }
 
   loadCollection() {
-    axios
+    API
       .get('/api/collection/' + this.props.match.params.collectionId)
       .then(response => {
         const collection = response.data;
@@ -42,7 +42,7 @@ class Collection extends Component {
 
   loadAlbums() {
     this.state.collection._items.forEach(albumId => {
-      axios
+      API
         .get('/api/album/' + albumId)
         .then(response => {
           const album = response.data;
@@ -70,7 +70,7 @@ class Collection extends Component {
     const url = '/api/collection/' + this.state.collection._id + '/album';
     const data = { "album_id": albumId };
 
-    axios
+    API
       .put(url, data)
       .then(response => {
         this.setState((state) => ({

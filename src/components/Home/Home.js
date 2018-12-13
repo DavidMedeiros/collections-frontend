@@ -4,17 +4,27 @@ import { Container } from 'semantic-ui-react'
 
 import UserHeader from "./UserHeader/UserHeader";
 import TabsMenu from "./TabsMenu/TabsMenu";
+import Welcome from "./Welcome/Welcome";
 
 class Home extends Component {
   render() {
-    return (
-      <div>
-        <UserHeader />
-        <Container>
-          <TabsMenu />
-        </Container>
-      </div>
-    );
+    console.log(this.props.userLogged);
+
+    if (this.props.userLogged) {
+      return (
+        <div>
+          <UserHeader />
+          <Container>
+            <TabsMenu />
+          </Container>
+        </div>
+      );
+    } else {
+      return (
+        <Welcome/>
+      );
+    }
+
   }
 }
 

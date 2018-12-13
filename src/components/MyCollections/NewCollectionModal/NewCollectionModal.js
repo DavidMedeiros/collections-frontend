@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { Modal, Button, Form, TextArea } from 'semantic-ui-react';
 
-import axios from "axios/index";
+import API from '../../../api';
 
 import './NewCollectionModal.scss';
 
@@ -37,7 +37,7 @@ class NewCollectionModal extends Component {
       image: this.state.imageURL.trim()
     };
 
-    axios
+    API
       .post('/api/collection', collection)
       .then(response => {
         if (response.status === 201) {

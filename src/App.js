@@ -6,60 +6,37 @@ import Home from "./components/Home/Home";
 import Collection from "./components/Collection/Collection";
 import Album from "./components/Album/Album";
 
-import axios from "axios/index";
-
 import './App.scss';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { userLogged: false };
+
+    this.state = { userLogged: false }
+
+    this.handleLogin = this.handleLogin.bind(this);
   }
 
-  handleLogin(credentials) {
-    axios
-      .post('/api/auth', credentials)
-      .then(response => {
-        if (response.status === 200) {
-          this.setState({ userLogged: true });
-          console.log('user logged');
-        }
-      }).catch(error => {
-      console.log('login error: ');
-      console.log(error);
-    });
-  }
-
-  componentDidMount() {
-    const credentials = {username: "user", password: "123456"};
-
-    this.handleLogin(credentials);
-  }
+  handleLogin = loggedUser => {
+      this.setState({ userLogged: loggedUser });
+  };
 
   render() {
-    if (this.state.userLogged) {
-      return (
-        <div>
-          <BrowserRouter>
-            <div>
-              <Navbar />
-              <Switch>
-                <Route exact path="/" component={Home} />
-                <Route exact path="/collection/:collectionId" component={Collection} />
-                <Route exact path="/album/:albumId" component={Album} />
-              </Switch>
-            </div>
-          </BrowserRouter>
-        </div>
-      );
-    } else {
-      return(
-        <div> Autenticando...
-
-          Certifique-se que você possui um usuário com username: "user", password: "123456" cadastrado no backend
-        </div>
-      );
-    }
+    return (
+      <div>
+        <BrowserRouter>
+          <div>
+            <Navbar userLogged={ this.state.userLogged } login={ this.handleLogin }/>
+            <Switch>
+              <Route exact path='/' render={ () => (<Home userLogged={ this.state.userLogged } />) }/>
+              {/*<Route exact path="/" component={Home} teste={this.state.userLogged} />*/}
+              <Route exact path="/collection/:collectionId" component={Collection} />
+              <Route exact path="/album/:albumId" component={Album} />
+            </Switch>
+          </div>
+        </BrowserRouter>
+      </div>
+    );
   }
 }
 

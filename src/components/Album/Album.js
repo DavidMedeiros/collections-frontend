@@ -4,7 +4,7 @@ import { Container, Grid, Loader, Image, Header, Label } from 'semantic-ui-react
 
 import TracksList from "./TracksList/TracksList";
 
-import axios from "axios/index";
+import API from '../../api';
 
 import './Album.scss'
 
@@ -20,7 +20,7 @@ class Album extends Component {
   }
 
   loadAlbum() {
-    axios
+    API
       .get('/api/album/' + this.props.match.params.albumId)
       .then(response => {
         const album = response.data;
@@ -37,7 +37,7 @@ class Album extends Component {
 
   loadTracks() {
     this.state.album._tracks.forEach(trackId => {
-      axios
+      API
         .get('/api/track/' + trackId)
         .then(response => {
           const track = response.data;

@@ -5,7 +5,7 @@ import {Header, Grid, Loader, Icon} from 'semantic-ui-react';
 import NewCollectionModal from "./NewCollectionModal/NewCollectionModal";
 import CollectionsList from "./CollectionsList/CollectionsList";
 
-import axios from "axios/index";
+import API from '../../api';
 
 import './MyCollections.scss'
 
@@ -25,7 +25,7 @@ class MyCollections extends Component {
   };
 
   componentDidMount() {
-    axios
+    API
       .get('/api/collection')
       .then(response => {
         const collections = response.data;

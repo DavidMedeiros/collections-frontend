@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 
 import { Search, List, Button, Image, Header, Icon} from 'semantic-ui-react'
 
-import axios from "axios/index";
+import API from '../../../api';
 
 import "./SearchAlbums.scss"
 
@@ -33,7 +33,7 @@ class SearchAlbums extends Component {
         searchOption = 'artist';
       }
 
-      axios
+      API
         .get('/api/album/search?' + searchOption + '=' + value)
         .then(response => {
           const albums = response.data;
