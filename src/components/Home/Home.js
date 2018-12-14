@@ -11,7 +11,7 @@ class Home extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { user: {}, isUserLoaded: false };
+    this.state = { user: null, isUserLoaded: false };
     this.getLoggedUser = this.getLoggedUser.bind(this);
   }
 
@@ -20,15 +20,18 @@ class Home extends Component {
       .then(response => {
         if (response.status === 200) {
           if (response.data.status) {
-            this.setState({ user: response.data.user, isUserLoaded: true });
+            this.setState({user: response.data.user, isUserLoaded: true});
           }
         }
       });
   }
 
   render() {
-    if (this.props.userLogged) {
+    if (this.props.userLogged && this.state.user == null) {
       this.getLoggedUser();
+    }
+
+    if (this.props.userLogged) {
       if (this.state.isUserLoaded) {
         return (
           <div>

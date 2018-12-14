@@ -14,14 +14,27 @@ import './Collection.scss'
 class Collection extends Component {
   constructor(props) {
     super(props);
-    this.state = { collectionLoaded: false, albumsLoaded: false, collection: [], albums: [], searchByName: true };
+    this.state = { collectionLoaded: false, albumsLoaded: false, collection: [], albums: [], searchByName: true, user: null };
 
     this.loadCollection = this.loadCollection.bind(this);
     this.loadAlbums = this.loadAlbums.bind(this);
   }
 
   componentDidMount() {
-    this.loadCollection();
+    API.get('/api/auth')
+      .then(response => {
+        console.log(response)
+
+        if (response.status === 200) {
+          if (response.data.status) {
+            this.setState({ user: response.data.user });
+            this.loadCollection();
+          } else {
+            localStorage.clear();
+            window.location.replace('/');
+          }
+        }
+      });
   }
 
   loadCollection() {
@@ -41,6 +54,8 @@ class Collection extends Component {
           } else {
             this.loadAlbums();
           }
+
+
         }
       })
       .catch(error => {
@@ -116,7 +131,7 @@ class Collection extends Component {
   };
 
   render() {
-    const { collectionLoaded, collection, searchByName, albumsLoaded, albums } = this.state;
+    const { collectionLoaded, collection, searchByName, albumsLoaded, albums, user } = this.state;
 
     if (collectionLoaded) {
       return (
@@ -126,11 +141,11 @@ class Collection extends Component {
           <Container>
             <Grid columns='equal'>
               <Grid.Row className='collectionContainer' centered>
-                <Grid.Column width={8}>
+                { user._id === collection._owner && <Grid.Column width={8}>
                   <SearchAlbums searchByName={ searchByName } onChange={ this.handleAddAlbum }/>
-                </Grid.Column>
+                </Grid.Column> }
 
-                <Grid.Column width={4}>
+                { user._id === collection._owner && <Grid.Column width={4}>
                   <Dropdown>
                     <Dropdown.Menu>
                       <Dropdown.Header icon='search' content='Opções de busca' />
@@ -141,7 +156,7 @@ class Collection extends Component {
                                      value='artist' text='Albums do Artista' />
                     </Dropdown.Menu>
                   </Dropdown>
-                </Grid.Column>
+                </Grid.Column> }
 
                 <Grid.Column width={4}>
                   <CollectionStatistic collection={ collection } itensAmount={ albums.length }/>

@@ -26,8 +26,6 @@ class Login extends Component {
 
     API.post('/api/auth', user)
       .then(response => {
-        console.log(response);
-
         if (response.status === 200) {
           const { onLogged } = this.props;
           onLogged(response.data.msg);
