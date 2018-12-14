@@ -33,3 +33,8 @@ Você pode encontrar [aqui](https://github.com/DavidMedeiros/collections-backend
 - Ariana Grande
 
   My Everything
+  
+- Beyoncé
+  
+  Lemonade
+
