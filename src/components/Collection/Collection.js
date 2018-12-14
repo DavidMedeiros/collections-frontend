@@ -23,8 +23,6 @@ class Collection extends Component {
   componentDidMount() {
     API.get('/api/auth')
       .then(response => {
-        console.log(response)
-
         if (response.status === 200) {
           if (response.data.status) {
             this.setState({ user: response.data.user });
@@ -54,8 +52,6 @@ class Collection extends Component {
           } else {
             this.loadAlbums();
           }
-
-
         }
       })
       .catch(error => {
