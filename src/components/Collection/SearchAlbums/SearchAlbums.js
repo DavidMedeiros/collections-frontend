@@ -24,8 +24,6 @@ class SearchAlbums extends Component {
     this.setState({ isLoading: true, value });
 
     setTimeout(() => {
-      if (this.state.value.length < 1) return this.resetComponent();
-
       let searchOption;
       if (this.props.searchByName) {
         searchOption = 'name';
@@ -43,8 +41,15 @@ class SearchAlbums extends Component {
             results: albums,
             hasResults: albums.length > 0
           });
+        })
+        .catch(error => {
+          if (error.response) {
+            if (error.response.status === 401) {
+              localStorage.clear();
+              window.location.replace('/');
+            }
+          }
         });
-
     }, 300)
   };
 

@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 
 import logo from '../../resources/logo.png'
 import Login from "./Login/Login";
+import API from "../../api";
 
 import './Navbar.scss'
 
@@ -27,6 +28,16 @@ class Navbar extends Component {
 
   handleItemClick = (e, { name }) => {
     this.setState({ activeItem: name })
+  };
+
+  logout = () => {
+    API.delete('/api/auth')
+      .then(response => {
+        if (response.status === 200) {
+          localStorage.clear();
+          window.location.replace('/');
+        }
+      });
   };
 
   handleLogin = loggedUser => {
@@ -61,8 +72,8 @@ class Navbar extends Component {
           </div> }
 
           { this.props.userLogged &&
-          <Menu.Item name='sign-in' color='pink'position='right' onClick={this.handleItemClick}
-                     style={{paddingBottom: 20 + 'px'}} as={Link} to={'/logout'} > Sair </Menu.Item> }
+          <Menu.Item name='sign-in' color='pink'position='right'
+                     style={{paddingBottom: 20 + 'px'}} onClick={this.logout}> Sair </Menu.Item> }
 
           { !this.props.userLogged && <div className='userNotLoggedNavbar'>
             <Login onLogged={ this.handleLogin }/>

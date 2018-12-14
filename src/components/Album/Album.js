@@ -23,6 +23,9 @@ class Album extends Component {
     API
       .get('/api/album/' + this.props.match.params.albumId)
       .then(response => {
+        if (response.data === null) {
+          window.location.replace('/');
+        }
         const album = response.data;
 
         this.setState({ album: album, albumLoaded: true });
@@ -31,6 +34,16 @@ class Album extends Component {
           this.setState({ tracksLoaded: true });
         } else {
           this.loadTracks();
+        }
+      })
+      .catch(error => {
+        if (error.response) {
+          if (error.response.status === 401) {
+            localStorage.clear();
+            window.location.replace('/');
+          } else if (error.response.status === 400) {
+            window.location.replace('/');
+          }
         }
       });
   }
@@ -48,6 +61,14 @@ class Album extends Component {
 
           if (this.state.tracks.length === this.state.album._tracks.length) {
             this.setState({ tracksLoaded: true });
+          }
+        })
+        .catch(error => {
+          if (error.response) {
+            if (error.response.status === 401) {
+              localStorage.clear();
+              window.location.replace('/');
+            }
           }
         });
     });
@@ -84,7 +105,7 @@ class Album extends Component {
                       <Header className='albumArtist' as='h2'>
                         <Header.Subheader className='albumArtist'>{ album.artist_name }</Header.Subheader>
                         <Header.Subheader className='albumDescription'>
-                          { new Date(album.released_date).getUTCFullYear() } - { album._tracks.length }
+                          { new Date(album.released_date).getUTCFullYear() } - { album._tracks.length } faixas
                         </Header.Subheader>
                       </Header>
                     </Grid.Column>

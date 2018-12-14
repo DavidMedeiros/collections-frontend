@@ -44,11 +44,15 @@ class NewCollectionModal extends Component {
           const { onChange } = this.props;
           onChange(response.data.data);
         }
-      }).catch(error => {
-      console.log('new collection error: ');
-      console.log(error);
-    });
-
+      })
+      .catch(error => {
+        if (error.response) {
+          if (error.response.status === 401) {
+            localStorage.clear();
+            window.location.replace('/');
+          }
+        }
+      });
     this.close();
   }
 

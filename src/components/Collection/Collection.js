@@ -28,14 +28,29 @@ class Collection extends Component {
     API
       .get('/api/collection/' + this.props.match.params.collectionId)
       .then(response => {
-        const collection = response.data;
+        if (response.data === null) {
+          window.location.replace('/');
+        }
+        if (response.status === 200) {
+          const collection = response.data;
 
-        this.setState({ collection: collection, collectionLoaded: true });
+          this.setState({collection: collection, collectionLoaded: true});
 
-        if (collection._items.length < 1) {
-          this.setState({ albumsLoaded: true });
-        } else {
-          this.loadAlbums();
+          if (collection._items.length < 1) {
+            this.setState({albumsLoaded: true});
+          } else {
+            this.loadAlbums();
+          }
+        }
+      })
+      .catch(error => {
+        if (error.response) {
+          if (error.response.status === 401) {
+            localStorage.clear();
+            window.location.replace('/');
+          } else if (error.response.status === 400) {
+            window.location.replace('/');
+          }
         }
       });
   }
@@ -45,14 +60,25 @@ class Collection extends Component {
       API
         .get('/api/album/' + albumId)
         .then(response => {
-          const album = response.data;
+          if (response.status === 200) {
 
-          this.setState((state) => ({
-            albums: state.albums.concat(album)
-          }));
+            const album = response.data;
 
-          if (this.state.albums.length === this.state.collection._items.length) {
-            this.setState({ albumsLoaded: true });
+            this.setState((state) => ({
+              albums: state.albums.concat(album)
+            }));
+
+            if (this.state.albums.length === this.state.collection._items.length) {
+              this.setState({ albumsLoaded: true });
+            }
+          }
+        })
+        .catch(error => {
+          if (error.response) {
+            if (error.response.status === 401) {
+              localStorage.clear();
+              window.location.replace('/');
+            }
           }
         });
     });
@@ -73,9 +99,19 @@ class Collection extends Component {
     API
       .put(url, data)
       .then(response => {
-        this.setState((state) => ({
-          albums: state.albums.concat(response.data.album)
-        }));
+        if (response.status === 200) {
+          this.setState((state) => ({
+            albums: state.albums.concat(response.data.album)
+          }));
+        }
+      })
+      .catch(error => {
+        if (error.response) {
+          if (error.response.status === 401) {
+            localStorage.clear();
+            window.location.replace('/');
+          }
+        }
       });
   };
 

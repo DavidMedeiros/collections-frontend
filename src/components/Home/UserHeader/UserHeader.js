@@ -9,12 +9,12 @@ class UserHeader extends Component {
     return (
       <Grid columns={2}>
         <Grid.Row className='userHeader' centered>
-          <Grid.Column>
-            <Image src='https://pbs.twimg.com/profile_images/1059257985355124736/cfwKNOq7_400x400.jpg'
+         <Grid.Column>
+            <Image src={this.props.user.image}
                    size='small' circular centered/>
             <Header as='h2' textAlign='center'>
-              <Header.Content > David Souza
-                <Header.Subheader>@davidsouza</Header.Subheader>
+              <Header.Content > {this.props.user.name}
+                <Header.Subheader>{this.props.user.username}</Header.Subheader>
               </Header.Content>
             </Header>
           </Grid.Column>

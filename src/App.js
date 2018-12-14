@@ -12,13 +12,25 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { userLogged: false }
+    this.state = { userLogged: false };
 
     this.handleLogin = this.handleLogin.bind(this);
   }
 
+  componentDidMount() {
+    let statusUser = localStorage.getItem('userLogged');
+
+    if (statusUser == null) {
+      this.setState({ userLogged: false });
+    } else {
+      this.setState({ userLogged: statusUser === 'true' });
+    }
+  }
+
   handleLogin = loggedUser => {
-      this.setState({ userLogged: loggedUser });
+    this.setState({ userLogged: loggedUser });
+
+    localStorage.setItem('userLogged', loggedUser);
   };
 
   render() {

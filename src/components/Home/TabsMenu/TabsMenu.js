@@ -12,7 +12,7 @@ class TabsMenu extends Component {
   render() {
     const panes = [
       { menuItem: 'Minhas Colecoes', render: () =>
-          <Tab.Pane className='myCollections' attached={true}><MyCollections /></Tab.Pane>
+          <Tab.Pane className='myCollections' attached={true}><MyCollections user={ this.props.user } /></Tab.Pane>
       },
       { menuItem: 'Seguindo', render: () =>
           <Tab.Pane className='followingUsers' attached={true}><FollowingUsersContainer /></Tab.Pane>

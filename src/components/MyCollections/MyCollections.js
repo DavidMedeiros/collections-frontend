@@ -13,9 +13,10 @@ class MyCollections extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      collections: [],
-      isLoaded: false
-    }
+      collections: []
+    };
+
+    this.loadUserCollections = this.loadUserCollections.bind(this);
   }
 
   handleNewCollection = createdCollection => {
@@ -24,13 +25,38 @@ class MyCollections extends Component {
     }));
   };
 
+  loadUserCollections() {
+    this.props.user._collections.forEach(collectionId => {
+      API
+        .get('/api/collection/' + collectionId)
+        .then(response => {
+          const collection = response.data;
+
+          this.setState((state) => ({
+            collections: state.collections.concat(collection)
+          }));
+
+          if (this.state.collections.length === this.props.user._collections.length) {
+            this.setState({ isLoaded: true });
+          }
+        })
+        .catch(error => {
+          if (error.response) {
+            if (error.response.status === 401) {
+              localStorage.clear();
+              window.location.replace('/');
+            }
+          }
+        });
+    });
+  }
+
   componentDidMount() {
-    API
-      .get('/api/collection')
-      .then(response => {
-        const collections = response.data;
-        this.setState({ collections: collections, isLoaded: true });
-      });
+    if (this.props.user._collections.length < 1) {
+      this.setState({ isLoaded: true });
+    } else {
+      this.loadUserCollections();
+    }
   }
 
   render() {
@@ -51,7 +77,7 @@ class MyCollections extends Component {
                 <Icon name='times circle outline' />
                 <Header.Content>
                   Você ainda não possui coleções
-                  <Header.Subheader>Crie uma nova clicando no botão <b>Nova Coleção</b>  acima </Header.Subheader>
+                  <Header.Subheader>Crie uma nova clicando no botão <i>Nova Coleção</i>  acima </Header.Subheader>
                 </Header.Content>
               </Header>
             </Grid.Row> </div>
