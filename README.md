@@ -34,8 +34,8 @@ Você pode encontrar [aqui](https://github.com/DavidMedeiros/collections-backend
   
   Lemonade
   
-  ##### Testes
-  É possível rodar a switch de testes utilizando o seguinte comando:
+##### Testes
+É possível rodar a switch de testes utilizando o seguinte comando:
 ``` 
 $ npm start 
 ```
