@@ -33,4 +33,10 @@ Você pode encontrar [aqui](https://github.com/DavidMedeiros/collections-backend
 - Beyoncé
   
   Lemonade
+  
+  ##### Testes
+  É possível rodar a switch de testes utilizando o seguinte comando:
+``` 
+$ npm start 
+```
 
