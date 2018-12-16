@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 
 import { Grid, Icon, Button, Label } from 'semantic-ui-react'
 
-import FollowersCollectionModal from "./FollowersCollectionModal/FollowersCollectionModal";
-import LikesCollectionModal from "./LikesCollectionModal/LikesCollectionModal";
+import FollowersCollectionModal from "./FollowersCollectionModal";
+import LikesCollectionModal from "./LikesCollectionModal";
 
 import './CollectionStatistic.scss'
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { Container, Card, Loader, Header, Icon } from 'semantic-ui-react'
 
-import AlbumCard from "../AlbumCard/AlbumCard";
+import AlbumCard from "./AlbumCard";
 
 class AlbumsList extends Component {
   render() {

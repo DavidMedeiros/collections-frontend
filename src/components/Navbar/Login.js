@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 import { Menu, Form } from 'semantic-ui-react'
 import { withRouter } from 'react-router'
 
-import NewUserModal from "../../NewUserModal/NewUserModal";
-import API from "../../../api";
+import NewUserModal from "../NewUserModal/NewUserModal";
+import API from "../../api";
 
 class Login extends Component {
   constructor(props) {

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { Modal } from 'semantic-ui-react';
 
-import CompactUsersList from "../../../UsersList/CompactUsersList/CompactUsersList";
+import CompactUsersList from "../UsersList/CompactUsersList";
 
 class FollowersCollectionModal extends Component {
   close = () => {

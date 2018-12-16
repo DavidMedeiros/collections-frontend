@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 
 import {Header, Grid, Loader, Icon} from 'semantic-ui-react';
 
-import NewCollectionModal from "./NewCollectionModal/NewCollectionModal";
-import CollectionsList from "./CollectionsList/CollectionsList";
+import NewCollectionModal from "./NewCollectionModal";
+import CollectionsList from "./CollectionsList";
 
 import API from '../../api';
 

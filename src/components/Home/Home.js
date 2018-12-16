@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 
 import {Container, Loader} from 'semantic-ui-react'
 
-import UserHeader from "./UserHeader/UserHeader";
-import TabsMenu from "./TabsMenu/TabsMenu";
-import Welcome from "./Welcome/Welcome";
+import UserHeader from "./UserHeader";
+import TabsMenu from "./TabsMenu";
+import Welcome from "./Welcome";
 import API from "../../api";
 
 class Home extends Component {

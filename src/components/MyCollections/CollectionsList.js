@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 import {Card} from 'semantic-ui-react';
 
-import CollectionCard from '../CollectionCard/CollectionCard';
+import CollectionCard from './CollectionCard';
 
 class CollectionsList extends Component {
   render() {

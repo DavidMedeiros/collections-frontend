@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 
 import { Search, List, Button, Image, Header, Icon} from 'semantic-ui-react'
 
-import API from '../../../api';
+import API from '../../api';
 
 import "./SearchAlbums.scss"
 

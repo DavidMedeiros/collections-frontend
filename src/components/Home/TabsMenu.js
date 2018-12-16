@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 
 import { Tab, Grid } from 'semantic-ui-react';
 
-import FollowingUsersContainer from '../../FollowingUsers/FollowingUsersContainer';
-import MyCollections from "../../MyCollections/MyCollections";
+import FollowingUsersContainer from '../FollowingUsers/FollowingUsersContainer';
+import MyCollections from "../MyCollections/MyCollections";
 
 import './TabsMenu.scss';
 

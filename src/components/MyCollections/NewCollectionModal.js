@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { Modal, Button, Form, TextArea } from 'semantic-ui-react';
 
-import API from '../../../api';
+import API from '../../api';
 
 import './NewCollectionModal.scss';
 

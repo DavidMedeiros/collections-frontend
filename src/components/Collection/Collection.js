@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 
 import {Dropdown, Container, Grid, Loader} from 'semantic-ui-react'
 
-import CollectionHeader from "./CollectionHeader/CollectionHeader";
-import AlbumsList from "./AlbumsList/AlbumsList";
-import CollectionStatistic from "./CollectionStatistic/CollectionStatistic";
-import SearchAlbums from "./SearchAlbums/SearchAlbums";
+import CollectionHeader from "./CollectionHeader";
+import AlbumsList from "./AlbumsList";
+import CollectionStatistic from "./CollectionStatistic";
+import SearchAlbums from "./SearchAlbums";
 
 import API from '../../api';
 

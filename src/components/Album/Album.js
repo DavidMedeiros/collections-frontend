@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { Container, Grid, Loader, Image, Header, Label } from 'semantic-ui-react'
 
-import TracksList from "./TracksList/TracksList";
+import TracksList from "./TracksList";
 
 import API from '../../api';
 

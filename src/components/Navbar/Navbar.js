@@ -5,7 +5,7 @@ import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom'
 
 import logo from '../../resources/logo.png'
-import Login from "./Login/Login";
+import Login from "./Login";
 import API from "../../api";
 
 import './Navbar.scss'
