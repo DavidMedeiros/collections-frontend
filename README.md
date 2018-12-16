@@ -37,6 +37,7 @@ Você pode encontrar [aqui](https://github.com/DavidMedeiros/collections-backend
 ##### Testes
 É possível rodar a switch de testes utilizando o seguinte comando:
 ``` 
-$ npm start 
+$ npm start  OU  Press `a` to run all tests, or run Jest with `--watchAll`.
 ```
+
 
